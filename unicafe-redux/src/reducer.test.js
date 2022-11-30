@@ -7,6 +7,11 @@ describe('unicafe reducer', () => {
     ok: 0,
     bad: 0,
   };
+  const stateWithValuesAt1 = {
+    good: 1,
+    ok: 1,
+    bad: 1,
+  };
 
   test('should return a proper initial state when called with undefined state', () => {
     const state = {};
@@ -58,6 +63,19 @@ describe('unicafe reducer', () => {
       good: 0,
       ok: 0,
       bad: 1,
+    });
+  });
+  test('reset sets all values to 0', () => {
+    const action = {
+      type: 'ZERO',
+    };
+    const state = stateWithValuesAt1;
+    deepFreeze(state);
+    const newState = counterReducer(state, action);
+    expect(newState).toEqual({
+      good: 0,
+      ok: 0,
+      bad: 0,
     });
   });
 });
